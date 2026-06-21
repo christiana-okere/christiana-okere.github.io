@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Christiana Okere — Global Health Data Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink:      #0f1923;
+    --slate:    #3d5166;
+    --mist:     #8fa8be;
+    --canvas:   #f7f5f2;
+    --white:    #ffffff;
+    --signal:   #1a6b5c;   /* deep teal — data / health */
+    --amber:    #c47a2b;   /* warm amber — research / aging */
+    --rule:     #ddd8d0;
+
+    --serif:  'DM Serif Display', Georgia, serif;
+    --sans:   'Inter', system-ui, sans-serif;
+    --mono:   'JetBrains Mono', monospace;
+
+    --max: 1100px;
+    --gap: clamp(2rem, 5vw, 4rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--canvas);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2rem;
+    background: rgba(247,245,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--rule);
+  }
+  .nav-logo {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    color: var(--slate);
+    text-transform: uppercase;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--slate);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--signal); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding-top: 72px;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 5rem);
+    border-right: 1px solid var(--rule);
+  }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--signal);
+    margin-bottom: 1.5rem;
+  }
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+    line-height: 1.08;
+    color: var(--ink);
+    margin-bottom: 1.2rem;
+  }
+  .hero-name em {
+    font-style: italic;
+    color: var(--signal);
+  }
+  .hero-tagline {
+    font-size: 1.05rem;
+    color: var(--slate);
+    max-width: 38ch;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.6rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary { background: var(--signal); color: var(--white); }
+  .btn-primary:hover { background: #145547; }
+  .btn-outline { background: transparent; color: var(--signal); border: 1.5px solid var(--signal); }
+  .btn-outline:hover { background: var(--signal); color: var(--white); }
+
+  .hero-right {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(3rem, 8vw, 6rem) clamp(2rem, 5vw, 4rem);
+    background: var(--white);
+  }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+  .stat-item {}
+  .stat-number {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--ink);
+    margin-bottom: 0.3rem;
+  }
+  .stat-number span { color: var(--signal); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mist);
+  }
+  .hero-tools {
+    border-top: 1px solid var(--rule);
+    padding-top: 1.5rem;
+  }
+  .tools-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.8rem;
+  }
+  .tools-chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .chip {
+    padding: 0.28rem 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--slate);
+    background: var(--canvas);
+    border: 1px solid var(--rule);
+    border-radius: 2px;
+  }
+
+  /* ── SECTION WRAPPERS ── */
+  section { padding: var(--gap) clamp(1.5rem, 5vw, 3rem); }
+  .inner { max-width: var(--max); margin: 0 auto; }
+
+  .section-header {
+    display: flex; align-items: baseline; gap: 1.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rule);
+  }
+  .section-eyebrow {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    white-space: nowrap;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    color: var(--ink);
+    font-weight: 400;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: var(--slate);
+    margin-bottom: 1.2rem;
+    font-size: 1rem;
+    line-height: 1.78;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-meta {}
+  .meta-block {
+    border-left: 3px solid var(--signal);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1.5rem;
+    background: var(--canvas);
+  }
+  .meta-block:last-child { margin-bottom: 0; border-color: var(--amber); }
+  .meta-block-label {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 0.4rem;
+  }
+  .meta-block-value {
+    font-size: 0.9rem;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* ── WORK ── */
+  #work { background: var(--canvas); }
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .work-card {
+    background: var(--white);
+    border: 1px solid var(--rule);
+    padding: 2rem;
+    border-radius: 3px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .work-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(15,25,35,0.08);
+  }
+  .work-card-tag {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 2px;
+    margin-bottom: 1rem;
+  }
+  .tag-mel { background: rgba(26,107,92,0.1); color: var(--signal); }
+  .tag-research { background: rgba(196,122,43,0.12); color: var(--amber); }
+  .work-card-title {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    color: var(--ink);
+    margin-bottom: 0.6rem;
+    line-height: 1.3;
+  }
+  .work-card-org {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    color: var(--mist);
+    margin-bottom: 1rem;
+    letter-spacing: 0.06em;
+  }
+  .work-card-desc {
+    font-size: 0.9rem;
+    color: var(--slate);
+    line-height: 1.65;
+    margin-bottom: 1.2rem;
+  }
+  .work-impact {
+    border-top: 1px solid var(--rule);
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .impact-line {
+    display: flex; align-items: flex-start; gap: 0.6rem;
+    font-size: 0.85rem;
+    color: var(--slate);
+  }
+  .impact-line::before {
+    content: '↗';
+    color: var(--signal);
+    font-size: 0.8rem;
+    margin-top: 0.1rem;
+    flex-shrink: 0;
+  }
+
+  /* ── RESEARCH ── */
+  #research { background: var(--white); }
+  .research-card {
+    border: 1px solid var(--rule);
+    padding: 2rem 2.2rem;
+    border-radius: 3px;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    transition: box-shadow 0.2s;
+  }
+  .research-card:last-child { margin-bottom: 0; }
+  .research-card:hover { box-shadow: 0 4px 24px rgba(15,25,35,0.07); }
+  .research-card-type {
+    font-family: var(--mono);
+    font-size: 0.66rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--amber);
+    margin-bottom: 0.5rem;
+  }
+  .research-card-title {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+    line-height: 1.35;
+  }
+  .research-card-desc {
+    font-size: 0.88rem;
+    color: var(--slate);
+    line-height: 1.65;
+  }
+  .research-card-meta {
+    text-align: right;
+  }
+  .research-status {
+    display: inline-block;
+    padding: 0.3rem 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    margin-bottom: 0.5rem;
+  }
+  .status-active { background: rgba(26,107,92,0.1); color: var(--signal); }
+  .status-concept { background: rgba(196,122,43,0.1); color: var(--amber); }
+  .research-year {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--mist);
+    display: block;
+    text-align: right;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--canvas); }
+  .skills-cols {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .skill-group {}
+  .skill-group-label {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--signal);
+    border-bottom: 2px solid var(--signal);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.2rem;
+  }
+  .skill-group:nth-child(2) .skill-group-label { color: var(--amber); border-color: var(--amber); }
+  .skill-group:nth-child(3) .skill-group-label { color: var(--slate); border-color: var(--slate); }
+  .skill-list { list-style: none; }
+  .skill-list li {
+    display: flex; align-items: center; gap: 0.7rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 0.88rem;
+    color: var(--slate);
+  }
+  .skill-list li:last-child { border-bottom: none; }
+  .skill-list li::before {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--signal);
+    flex-shrink: 0;
+  }
+  .skill-group:nth-child(2) .skill-list li::before { background: var(--amber); }
+  .skill-group:nth-child(3) .skill-list li::before { background: var(--mist); }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--white); }
+  .edu-timeline { position: relative; padding-left: 2rem; }
+  .edu-timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 8px;
+    width: 2px; background: var(--rule);
+  }
+  .edu-item {
+    position: relative;
+    padding-bottom: 2.5rem;
+  }
+  .edu-item:last-child { padding-bottom: 0; }
+  .edu-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem; top: 8px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 2px solid var(--signal);
+  }
+  .edu-item:last-child::before { border-color: var(--amber); }
+  .edu-degree {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+  }
+  .edu-institution {
+    font-size: 0.88rem;
+    color: var(--slate);
+    margin-bottom: 0.2rem;
+  }
+  .edu-year {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--mist);
+    letter-spacing: 0.1em;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--ink);
+    color: var(--white);
+    text-align: center;
+    padding: 5rem 2rem;
+  }
+  #contact .section-eyebrow { color: var(--mist); }
+  #contact .section-title { color: var(--white); }
+  #contact .section-header { border-color: rgba(255,255,255,0.1); justify-content: center; }
+  .contact-sub {
+    font-size: 1rem;
+    color: var(--mist);
+    max-width: 50ch;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+  }
+  .contact-links { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+  .btn-light { background: var(--white); color: var(--ink); }
+  .btn-light:hover { background: var(--canvas); }
+  .btn-ghost { background: transparent; color: var(--white); border: 1.5px solid rgba(255,255,255,0.3); }
+  .btn-ghost:hover { border-color: var(--white); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 1.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  footer span {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.08em;
+  }
+
+  /* ── SCROLL REVEAL ── */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 860px) {
+    #hero { grid-template-columns: 1fr; }
+    .hero-right { border-top: 1px solid var(--rule); }
+    .about-grid,
+    .work-grid,
+    .skills-cols { grid-template-columns: 1fr; }
+    .research-card { grid-template-columns: 1fr; }
+    .research-card-meta { text-align: left; }
+    nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+  }
+  @media (max-width: 560px) {
+    .stats-grid { grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .nav-links { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; }
+    * { transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-logo">Christiana Okere</span>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Global Health · M&amp;E · Aging Research</p>
+    <h1 class="hero-name">Christiana<br><em>Okere</em></h1>
+    <p class="hero-tagline">Turning health program data into decisions that reach more people — across PEPFAR systems, chronic disease research, and aging populations in sub-Saharan Africa.</p>
+    <div class="hero-ctas">
+      <a href="#work" class="btn btn-primary">View My Work</a>
+      <a href="mailto:iamchristieokere@gmail.com" class="btn btn-outline">Get in Touch</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">6<span>+</span></div>
+        <div class="stat-label">Years PEPFAR M&amp;E</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">3</div>
+        <div class="stat-label">States Covered</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50<span>k+</span></div>
+        <div class="stat-label">Patient Records Managed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">4</div>
+        <div class="stat-label">Data Platforms</div>
+      </div>
+    </div>
+    <div class="hero-tools">
+      <p class="tools-label">Core Tools &amp; Systems</p>
+      <div class="tools-chips">
+        <span class="chip">DHIS2</span>
+        <span class="chip">Power BI</span>
+        <span class="chip">Python</span>
+        <span class="chip">SQL</span>
+        <span class="chip">SPSS</span>
+        <span class="chip">KoboToolbox</span>
+        <span class="chip">ODK</span>
+        <span class="chip">DATIM</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Background</span>
+      <h2 class="section-title">Who I Am</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <p>I am a Data and M&E Specialist with over six years embedded in PEPFAR- and USAID-funded HIV/AIDS and TB programs at ECEWS in Akwa Ibom State, Nigeria. My work sits at the intersection of program accountability and data science — designing indicator frameworks, managing electronic health records, and producing the analytic reports that inform donor decisions.</p>
+        <p>What drives me is the gap between data collected and decisions made. I have spent my career closing that gap: building dashboards that Program Directors actually use, identifying coverage failures before they become audit findings, and training facility-level staff to understand their own numbers.</p>
+        <p>My research interests have grown out of this work. Nigeria's HIV response is aging — a generation of patients started on ART in the 2000s now faces chronic comorbidities alongside older adults who were never part of the original epidemic. I am building a research agenda around multimorbidity, aging, and chronic disease management in sub-Saharan Africa, bridging my M&E expertise with gerontological inquiry.</p>
+      </div>
+      <div class="about-meta reveal">
+        <div class="meta-block">
+          <div class="meta-block-label">Current Role</div>
+          <div class="meta-block-value">Data &amp; M&amp;E Officer / Specialist<br>ECEWS, Uyo, Akwa Ibom, Nigeria</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-block-label">Funders Worked With</div>
+          <div class="meta-block-value">PEPFAR · USAID · CDC</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-block-label">Education</div>
+          <div class="meta-block-value">M.Sc. Biochemistry — Ahmadu Bello University<br>B.Sc. Biochemistry — University of Maiduguri</div>
+        </div>
+        <div class="meta-block">
+          <div class="meta-block-label">Research Focus</div>
+          <div class="meta-block-value">Multimorbidity · Aging in sub-Saharan Africa · Chronic disease &amp; HIV</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Portfolio</span>
+      <h2 class="section-title">Selected Work</h2>
+    </div>
+    <div class="work-grid">
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-mel">M&amp;E · PEPFAR</span>
+        <h3 class="work-card-title">HIV Cascade Analysis &amp; Retention Improvement</h3>
+        <p class="work-card-org">ECEWS / USAID — Akwa Ibom State, 2022–2024</p>
+        <p class="work-card-desc">Designed and led quarterly data review processes across 12 supported facilities, identifying gaps in the 95-95-95 cascade. Built a custom DHIS2 tracker to flag patients lost to follow-up within 30 days of missed appointments.</p>
+        <div class="work-impact">
+          <div class="impact-line">Reduced LTFU rate by 18% across tracked facilities within two quarters</div>
+          <div class="impact-line">Dashboard adopted as standard reporting tool by state M&amp;E team</div>
+          <div class="impact-line">Trained 26 facility data officers on interpretation and use</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-mel">Data Quality · SIMS</span>
+        <h3 class="work-card-title">PEPFAR SIMS Data Quality Remediation</h3>
+        <p class="work-card-org">ECEWS / CDC — Multi-facility, 2021–2023</p>
+        <p class="work-card-desc">Led data quality assessments across supported sites ahead of PEPFAR SIMS visits, building remediation trackers and coaching facility teams on documentation standards for viral load, HTS, and TB/HIV indicators.</p>
+        <div class="work-impact">
+          <div class="impact-line">Zero critical data quality findings in final SIMS assessment, 2023</div>
+          <div class="impact-line">Standardised source document protocols across 8 sites</div>
+          <div class="impact-line">Produced remediation playbook adopted organisation-wide</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-mel">Analytics · Power BI</span>
+        <h3 class="work-card-title">DATIM Reporting Dashboard — Executive View</h3>
+        <p class="work-card-org">ECEWS Internal — 2023</p>
+        <p class="work-card-desc">Built an executive-facing Power BI dashboard consolidating DATIM submission data, monthly site performance scores, and MER indicator trends — replacing a manual Excel process that took 3 days per quarter.</p>
+        <div class="work-impact">
+          <div class="impact-line">Reporting cycle cut from 3 days to 4 hours</div>
+          <div class="impact-line">Senior leadership able to drill to facility level independently</div>
+          <div class="impact-line">Now standard tool for quarterly programme reviews</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-research">Research · Gerontology</span>
+        <h3 class="work-card-title">Multimorbidity in Older Adults — Research Concept</h3>
+        <p class="work-card-org">Independent Research — 2024–2025</p>
+        <p class="work-card-desc">Developed a research concept note on the burden of multimorbidity among older adults living with HIV in sub-Saharan Africa, examining intersections of chronic non-communicable disease, ART side-effects, and under-resourced geriatric care.</p>
+        <div class="work-impact">
+          <div class="impact-line">Concept note submitted to MIRA (McMaster) and AFAR for review</div>
+          <div class="impact-line">Informed supervisor outreach to UK and Canadian gerontology faculty</div>
+          <div class="impact-line">Foundation for planned MSc/PhD research programme</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-mel">Tracker · TB/HIV Co-infection</span>
+        <h3 class="work-card-title">HIV/TB Co-infection Client Tracking System</h3>
+        <p class="work-card-org">ECEWS / PEPFAR — Akwa Ibom State</p>
+        <p class="work-card-desc">Designed and built a dedicated tracking system to identify and monitor HIV-positive clients who were also TB-positive — closing a critical gap where co-infected patients were falling through between siloed HIV and TB registers. The tracker consolidated patient data across both programmes and flagged high-priority clients for follow-up.</p>
+        <div class="work-impact">
+          <div class="impact-line">Achieved <strong>80% treatment outcome</strong> rate among tracked HIV/TB co-infected clients</div>
+          <div class="impact-line">Enabled systematic identification of co-infected clients previously missed by routine reporting</div>
+          <div class="impact-line">Improved coordination between HIV and TB programme teams at facility level</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-mel">Survey Design · KoboToolbox</span>
+        <h3 class="work-card-title">Community-Based TB Screening Tool</h3>
+        <p class="work-card-org">ECEWS / PEPFAR — 2020–2022</p>
+        <p class="work-card-desc">Designed and deployed a KoboToolbox-based mobile screening instrument for community TB case-finding, including skip logic, GPS capture, and real-time data review workflows for community health workers.</p>
+        <div class="work-impact">
+          <div class="impact-line">Deployed across 4 LGAs reaching 3,000+ community members</div>
+          <div class="impact-line">Case notification rate increased 22% in participating communities</div>
+          <div class="impact-line">Tool adapted by partner organisation for state-wide rollout</div>
+        </div>
+      </div>
+
+      <div class="work-card reveal">
+        <span class="work-card-tag tag-research">Digital Health · AI</span>
+        <h3 class="work-card-title">Remote Patient Monitoring in Chronic Disease — Policy Brief</h3>
+        <p class="work-card-org">Independent Research — 2025</p>
+        <p class="work-card-desc">Authored a professional article on the application of AI-powered remote patient monitoring for chronic disease management in low-resource settings, examining implementation barriers and evidence-based recommendations for sub-Saharan Africa.</p>
+        <div class="work-impact">
+          <div class="impact-line">Published on LinkedIn — reached practitioners across 6 countries</div>
+          <div class="impact-line">Cited in two follow-up discussions by public health professionals</div>
+          <div class="impact-line">Demonstrates ability to translate technical content for policy audiences</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Academic</span>
+      <h2 class="section-title">Research Interests</h2>
+    </div>
+
+    <div class="research-card reveal">
+      <div>
+        <p class="research-card-type">Concept Note · Sub-Saharan Africa</p>
+        <h3 class="research-card-title">Multimorbidity and Chronic Disease Burden Among Older Adults Living with HIV in Sub-Saharan Africa</h3>
+        <p class="research-card-desc">Examines the convergence of HIV chronicity, aging, and non-communicable disease in populations underserved by geriatric care infrastructure — drawing on programme data from Nigeria's PEPFAR response to inform a broader regional research agenda.</p>
+      </div>
+      <div class="research-card-meta">
+        <span class="research-status status-active">Active</span>
+        <span class="research-year">2024–2025</span>
+      </div>
+    </div>
+
+    <div class="research-card reveal">
+      <div>
+        <p class="research-card-type">Research Interest · Gerontology</p>
+        <h3 class="research-card-title">Social Determinants of Healthy Ageing in Urban Nigeria</h3>
+        <p class="research-card-desc">Exploratory interest in how urbanisation, social isolation, and structural poverty interact with biological aging in Nigerian cities — with a view toward mixed-methods inquiry combining survey instruments and qualitative data from community health workers.</p>
+      </div>
+      <div class="research-card-meta">
+        <span class="research-status status-concept">Developing</span>
+        <span class="research-year">2025</span>
+      </div>
+    </div>
+
+    <div class="research-card reveal">
+      <div>
+        <p class="research-card-type">Applied Research · Digital Health</p>
+        <h3 class="research-card-title">AI-Powered Remote Patient Monitoring for Chronic Disease in Low-Resource Settings</h3>
+        <p class="research-card-desc">Policy-focused analysis of evidence, implementation barriers, and design principles for deploying RPM technologies in resource-constrained African health systems, with attention to equity, connectivity, and care worker integration.</p>
+      </div>
+      <div class="research-card-meta">
+        <span class="research-status status-active">Published</span>
+        <span class="research-year">2025</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Capabilities</span>
+      <h2 class="section-title">Technical Skills</h2>
+    </div>
+    <div class="skills-cols">
+      <div class="skill-group reveal">
+        <p class="skill-group-label">Data &amp; M&amp;E Systems</p>
+        <ul class="skill-list">
+          <li>DHIS2 — data entry, configuration, reporting</li>
+          <li>DATIM / PEPFAR MER indicators</li>
+          <li>KoboToolbox &amp; ODK — survey design</li>
+          <li>Electronic Health Records (EHR/EMR)</li>
+          <li>SIMS data quality assessments</li>
+          <li>Indicator framework development</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-label">Analytics &amp; Visualisation</p>
+        <ul class="skill-list">
+          <li>Power BI — dashboards &amp; executive reporting</li>
+          <li>Python — data cleaning &amp; analysis</li>
+          <li>SQL — querying health databases</li>
+          <li>SPSS — statistical analysis</li>
+          <li>Excel — advanced models &amp; pivot reporting</li>
+          <li>Data storytelling for non-technical audiences</li>
+        </ul>
+      </div>
+      <div class="skill-group reveal">
+        <p class="skill-group-label">Research &amp; Programme</p>
+        <ul class="skill-list">
+          <li>M&amp;E framework design (log frames, MEL plans)</li>
+          <li>Qualitative &amp; mixed-methods research</li>
+          <li>Capacity building &amp; training facilitation</li>
+          <li>PEPFAR/USAID programme reporting</li>
+          <li>Digital health &amp; AI in health systems</li>
+          <li>Gerontology &amp; aging research (emerging)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" style="background: var(--white);">
+  <div class="inner">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Credentials</span>
+      <h2 class="section-title">Education &amp; Training</h2>
+    </div>
+    <div class="edu-timeline">
+      <div class="edu-item reveal">
+        <div class="edu-degree">M.Sc. Biochemistry</div>
+        <div class="edu-institution">Ahmadu Bello University, Zaria, Nigeria</div>
+        <div class="edu-year">Postgraduate</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-degree">B.Sc. Biochemistry</div>
+        <div class="edu-institution">University of Maiduguri, Nigeria</div>
+        <div class="edu-year">Undergraduate</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-degree">AI-Ready Healthcare &amp; Digital Health Literacy Certificate</div>
+        <div class="edu-institution">Professional Certification — 2026</div>
+        <div class="edu-year">2026</div>
+      </div>
+      <div class="edu-item reveal">
+        <div class="edu-degree">CPD Level 3 — Medical Social Work &amp; Public Healthcare</div>
+        <div class="edu-institution">La Plage Meta Verse Academy</div>
+        <div class="edu-year">2025</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="inner">
+    <div class="section-header reveal" style="border-color: rgba(255,255,255,0.1); justify-content: center;">
+      <span class="section-eyebrow">Let's Connect</span>
+      <h2 class="section-title" style="color: var(--white);">Open to Opportunities</h2>
+    </div>
+    <p class="contact-sub">Available for M&amp;E and research roles with INGOs, UN agencies, and academic institutions — particularly in global health, aging, and HIV program data. Open to remote, hybrid, and international positions.</p>
+    <div class="contact-links">
+      <a href="mailto:iamchristieokere@gmail.com" class="btn btn-light">iamchristieokere@gmail.com</a>
+      <a href="https://www.linkedin.com/in/christiana-okere" target="_blank" class="btn btn-ghost">LinkedIn Profile</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>Christiana Okere · Uyo, Akwa Ibom, Nigeria</span>
+  <span>Global Health Data Specialist</span>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
